@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵsetCurrentInjector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RealtimeDatabaseService } from'../shared/service/realtime-database/realtime-database.service';
 import { User } from '../shared/model/User';
@@ -23,8 +23,10 @@ export class UserComponent implements OnInit {
     this.service.getUsers().snapshotChanges().subscribe(res => {
       this.listUsers.length = 0;
       res.forEach(t => {
-        const user = t.payload.toJSON();
-        //user['$key'] = t.key;
+        let user: User = new User()
+        user.name = t.key as string
+        user.id = t.payload.toJSON() as Number
+        console.log(user)
         this.listUsers.push(user as User);
       });
     }, err => {
@@ -33,7 +35,6 @@ export class UserComponent implements OnInit {
     this.service.getUsers2().subscribe (data => {
       this.listUsers.push(data);
     })
-    console.log(this.listUsers);
   }
 
   dataState() {     
