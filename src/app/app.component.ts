@@ -13,19 +13,11 @@ interface Note {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  implements OnInit {
+export class AppComponent  {
 
-  notesCollection: AngularFirestoreCollection<Note>;
-  notes: Observable<Note[]>;
-
-  constructor (private afs: AngularFirestore)
+  constructor ()
   {
     
-  }
-
-  ngOnInit() {
-    this.notesCollection = this.afs.collection('notes')
-    this.notes = this.notesCollection.valueChanges()
   }
 
   title = 'LogtimeManagement';
