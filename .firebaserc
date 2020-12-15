@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "personalregcozine": {
+      "hosting": {
+        "LogtimeManagement": [
+          "personalregcozine"
+        ]
+      }
+    }
+  }
+}
