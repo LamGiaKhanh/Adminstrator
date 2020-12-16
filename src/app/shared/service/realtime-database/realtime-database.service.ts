@@ -19,11 +19,6 @@ export class RealtimeDatabaseService {
     return this.usersRef;
   }
 
-  getUsers2(): Observable<any> {
-    this.usersRef2 = this.realtimeDb.list('Users');
-    return this.usersRef2.valueChanges();
-  }
-
   getLogtimes(): AngularFireList<User> {
     this.usersRef = this.realtimeDb.list('/LogTimes') as AngularFireList<User>;
     return this.usersRef;

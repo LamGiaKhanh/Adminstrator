@@ -20,6 +20,12 @@ export class UserComponent implements OnInit {
   constructor(private service: RealtimeDatabaseService) { }
 
   ngOnInit(): void {
+    this.reload();
+    this.dataState();
+  }
+  
+  reload()
+  {
     this.service.getUsers().snapshotChanges().subscribe(res => {
       this.listUsers.length = 0;
       res.forEach(t => {
@@ -32,9 +38,6 @@ export class UserComponent implements OnInit {
     }, err => {
       debugger;
     });
-    this.service.getUsers2().subscribe (data => {
-      this.listUsers.push(data);
-    })
   }
 
   dataState() {     
