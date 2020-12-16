@@ -10,21 +10,27 @@ import { LocalDataSource } from 'ng2-smart-table';
 })
 export class LogtimeComponent implements OnInit {
   listLogtime: Logtime[] = [];
+  listPending: Logtime[] = [];
+
   hideWhenNoUser: boolean = false;
   noData: boolean = false; 
   source : any = LocalDataSource;
+  pendingSource : any = LocalDataSource;
+
   settings = {
+    actions:false,
     columns: {
-      key: {
+      $key: {
         title: 'Log time',
         filter: false
       },
       imageURL: {
         title: 'Image',
         filter: false,
+        class: 'justify-content-center',
         type: 'html',
         valuePrepareFunction: (imageURL) => {
-          return `<img class='table-thumbnail-img' height="70" width="70" [lazyLoad]="imageURL" src="${imageURL}"/>`
+          return `<img class='table-thumbnail-img' height="150" width="100" [lazyLoad]="imageURL" src="${imageURL}"/>`
     }
       },
       name: {
@@ -33,6 +39,45 @@ export class LogtimeComponent implements OnInit {
       },
       time: {
         title: 'Time',
+        filter: false
+      },
+      status: {
+        title: 'Status',
+        filter: false
+      },
+    }
+  };
+
+  settings2 = {
+    edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+    },
+    columns: {
+      $key: {
+        title: 'Log time',
+        filter: false
+      },
+      imageURL: {
+        title: 'Image',
+        filter: false,
+        class: 'justify-content-center',
+        type: 'html',
+        valuePrepareFunction: (imageURL) => {
+          return `<img class='table-thumbnail-img' height="150" width="100" [lazyLoad]="imageURL" src="${imageURL}"/>`
+    }
+      },
+      name: {
+        title: 'Name',
+        filter: false
+      },
+      time: {
+        title: 'Time',
+        filter: false
+      },
+      status: {
+        title: 'Status',
         filter: false
       },
     }
@@ -53,11 +98,15 @@ export class LogtimeComponent implements OnInit {
         let lt: Logtime = new Logtime()
         
         lt = t.payload.toJSON() as Logtime;
+        if (lt.status == null)
+        {
+          lt.status = "Face_checked";
+        }
         lt.$key = t.key as string;
         this.listLogtime.push(lt as Logtime);
-        console.log(lt)
       });
       this.source = this.listLogtime;
+      this.pendingSource = this.listLogtime.filter(lt => lt.status == "Pending")
     }, err => {
       debugger;
     });

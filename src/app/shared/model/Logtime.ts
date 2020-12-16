@@ -3,4 +3,5 @@ export class Logtime {
     imageURl: string;
     name: string;
     time: string;
+    status: string;
   }

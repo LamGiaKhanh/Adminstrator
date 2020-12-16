@@ -20,6 +20,9 @@ export class UserComponent implements OnInit {
   noData: boolean = false;
   source : any = LocalDataSource;
   settings = {
+    add: {
+      confirmCreate: true,
+    },
     columns: {
       name: {
         title: 'Full Name',
@@ -85,11 +88,24 @@ export class UserComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
+    console.log('123');
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
+      this.service.deleteUser(event.data.name);
+      console.log(event.data.name);
     } else {
       event.confirm.reject();
     }
   }
+
+  onCreateConfirm(event):void {
+    let user: User = new User()
+    user.name = event.newData.name as string
+    user.id = event.newData.name as Number
+    this.service.createUser(user);
+
+    console.log(user);
+    this.reload();
+  } 
 
 }

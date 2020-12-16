@@ -1,6 +1,6 @@
 <nb-card>
     <nb-card-header>
-      LOG TIMES
+      Face checked logtimes
     </nb-card-header>
   
     <nb-card-body>
@@ -9,4 +9,15 @@
       </ng2-smart-table>
     </nb-card-body>
   </nb-card>
+
+  <nb-card>
+    <nb-card-header>
+      Pending Logtimes
+    </nb-card-header>
   
+    <nb-card-body>
+      <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+      <ng2-smart-table [settings]="settings2" [source]="pendingSource" (deleteConfirm)="onDeleteConfirm($event)" >
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
