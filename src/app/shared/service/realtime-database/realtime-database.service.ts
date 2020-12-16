@@ -29,7 +29,7 @@ export class RealtimeDatabaseService {
 
   createUser(user: User) :any
   {
-    return this.usersRef.push({name: user.name, id: user.id});
+    return this.realtimeDb.object(this.userPath + '/' + user.name).set(user.id)
   }
 
   deleteUser(key: string): Promise<void> {

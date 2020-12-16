@@ -101,10 +101,8 @@ export class UserComponent implements OnInit {
   onCreateConfirm(event):void {
     let user: User = new User()
     user.name = event.newData.name as string
-    user.id = event.newData.name as Number
+    user.id = event.newData.id as Number
     this.service.createUser(user);
-
-    console.log(user);
     this.reload();
   } 
 
