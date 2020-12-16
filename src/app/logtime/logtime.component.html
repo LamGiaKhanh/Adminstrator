@@ -1,1 +1,12 @@
-<p>logtime works!</p>
+<nb-card>
+    <nb-card-header>
+      LOG TIMES
+    </nb-card-header>
+  
+    <nb-card-body>
+      <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" >
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+  

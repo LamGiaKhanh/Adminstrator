@@ -94,6 +94,7 @@
             "styles": [
               "src/styles.scss",
               "./node_module/@nebular/theme/styles/prebuild/default.scss"
+              
             ],
             "scripts": []
           }

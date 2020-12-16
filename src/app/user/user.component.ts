@@ -20,20 +20,6 @@ export class UserComponent implements OnInit {
   noData: boolean = false;
   source : any = LocalDataSource;
   settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
     columns: {
       name: {
         title: 'Full Name',
@@ -83,6 +69,27 @@ export class UserComponent implements OnInit {
         this.noData = false;
       }
     })
+  }
+  onSearch(query: string = '') {
+    this.source.setFilter([
+      // fields we want to include in the search
+      {
+        field: 'name',
+        search: query
+      },
+      {
+        field: 'id',
+        search: query
+      },
+    ], false);
+  }
+
+  onDeleteConfirm(event): void {
+    if (window.confirm('Are you sure you want to delete?')) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
   }
 
 }
