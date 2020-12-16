@@ -108,13 +108,9 @@ export class LogtimeComponent implements OnInit {
         let lt: Logtime = new Logtime()
         
         lt = t.payload.toJSON() as Logtime;
-        if (lt.name == "Unknown - Take Photo")
+        if (lt.status == null)
         {
           lt.status = "Pending";
-        }
-        else
-        {
-          lt.status = "Face_Checked";
         }
         lt.$key = t.key as string;
         this.listLogtime.push(lt as Logtime);
