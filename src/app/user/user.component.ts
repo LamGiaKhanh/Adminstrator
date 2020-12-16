@@ -2,6 +2,7 @@ import { Component, OnInit, ɵsetCurrentInjector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RealtimeDatabaseService } from'../shared/service/realtime-database/realtime-database.service';
 import { User } from '../shared/model/User';
+import { AuthService } from "../shared/service/authService/auth.service";
 
 @Component({
   selector: 'app-user',
@@ -17,7 +18,7 @@ export class UserComponent implements OnInit {
   noData: boolean = false; 
 
 
-  constructor(private service: RealtimeDatabaseService) { }
+  constructor(private service: RealtimeDatabaseService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.reload();
