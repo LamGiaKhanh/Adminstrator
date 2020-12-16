@@ -25,10 +25,11 @@ export class LogtimeComponent implements OnInit {
       this.listLogtime.length = 0;
       res.forEach(t => {
         let lt: Logtime = new Logtime()
-
+        
         lt = t.payload.toJSON() as Logtime;
         lt.$key = t.key as string;
         this.listLogtime.push(lt as Logtime);
+        console.log(lt)
       });
     }, err => {
       debugger;

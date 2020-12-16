@@ -5,6 +5,7 @@ import { User } from '../shared/model/User';
 import { LocalDataSource } from 'ng2-smart-table';
 
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',

@@ -13,12 +13,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbCardModule, NbTableModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbMenuShowcaseComponent } from './shared/nb-menu-showcase/nb-menu-showcase.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { NbIconModule } from '@nebular/theme';
+import { NbMenuShowcaseComponent } from './shared/nb-menu-showcase/nb-menu-showcase.component'
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { NbIconModule } from '@nebular/theme';
     FooterComponent,
     NbMenuShowcaseComponent,
     HomeComponent,
-    LoginComponent
+    SigninComponent
   ],
   imports: [
     BrowserModule,

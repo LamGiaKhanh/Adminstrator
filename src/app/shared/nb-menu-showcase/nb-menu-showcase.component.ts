@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
-
+import {  NbMenuItem } from '@nebular/theme';
+import { AuthService } from "../service/authService/auth.service";
 @Component({
   selector: 'app-nb-menu-showcase',
   templateUrl: './nb-menu-showcase.component.html',
@@ -18,8 +18,9 @@ export class NbMenuShowcaseComponent implements OnInit {
       icon: 'lock-outline',
       link:'/logtimes'
     },
+
   ];
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
