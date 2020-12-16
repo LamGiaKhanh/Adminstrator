@@ -46,7 +46,9 @@ export class RealtimeDatabaseService {
   }
 
   updateLogtime(lt: Logtime): Promise<void> {
-      return this.realtimeDb.object(this.logPath + "/" + lt.$key).set(status);
+    let key = lt.$key
+    console.log(key)
+    return this.realtimeDb.object(this.logPath + "/" + key + "/status").set(lt.status)
   }
 
   deleteLogtime(key): Promise<void> {

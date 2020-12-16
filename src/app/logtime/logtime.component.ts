@@ -157,7 +157,7 @@ export class LogtimeComponent implements OnInit {
     }
   }
   onSaveConfirm(event):void {
-    if (window.confirm('Are you sure you want to delete?'))
+    if (window.confirm('Are you sure you want to edit?'))
     {
       event.confirm.resolve();
       let lt: Logtime = new Logtime()
