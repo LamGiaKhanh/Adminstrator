@@ -21,10 +21,9 @@ export class RealtimeDatabaseService {
     this.usersRef = this.realtimeDb.list(this.userPath) as AngularFireList<User>;
     return this.usersRef;
   }
-
-  getLogtimes(): AngularFireList<Logtime> {
-    this.logsRef = this.realtimeDb.list(this.logPath) as AngularFireList<Logtime>;
-    return this.logsRef;
+  getUsersById(id): AngularFireList<User> {
+    this.usersRef = this.realtimeDb.list(this.userPath + "/" + id) as AngularFireList<User>;
+    return this.usersRef;
   }
 
   createUser(user: User) :any
@@ -32,9 +31,28 @@ export class RealtimeDatabaseService {
     return this.realtimeDb.object(this.userPath + '/' + user.name).set(user.id)
   }
 
+  updateUser(user: User): Promise<void> {
+      return this.realtimeDb.object(this.userPath + "/" + user.name).set(user.id);
+  }
+
   deleteUser(key: string): Promise<void> {
     return this.realtimeDb.object(this.userPath + "/" + key).remove();
   }
+
+  
+  getLogtimes(): AngularFireList<Logtime> {
+    this.logsRef = this.realtimeDb.list(this.logPath) as AngularFireList<Logtime>;
+    return this.logsRef;
+  }
+
+  updateLogtime(lt: Logtime): Promise<void> {
+      return this.realtimeDb.object(this.logPath + "/" + lt.$key).set(status);
+  }
+
+  deleteLogtime(key): Promise<void> {
+    return this.realtimeDb.object(this.logPath + "/" + key).remove();
+  }
+
 
 }
 

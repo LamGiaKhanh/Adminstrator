@@ -50,9 +50,11 @@ export class LogtimeComponent implements OnInit {
 
   settings2 = {
     edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true
+    },
+    delete:
+    {
+      confirmDelete: true
     },
     columns: {
       $key: {
@@ -78,6 +80,14 @@ export class LogtimeComponent implements OnInit {
       },
       status: {
         title: 'Status',
+        type: 'html',
+        editor: {
+          type: 'list',
+          config: {
+            list: [{ value: 'Face_Checked', title: 'Face_Checked' }, { value: 'Pending', title: 'Pending' }
+            ]
+          }
+        },
         filter: false
       },
     }
@@ -98,9 +108,13 @@ export class LogtimeComponent implements OnInit {
         let lt: Logtime = new Logtime()
         
         lt = t.payload.toJSON() as Logtime;
-        if (lt.status == null)
+        if (lt.name == "Unknown - Take Photo")
         {
-          lt.status = "Face_checked";
+          lt.status = "Pending";
+        }
+        else
+        {
+          lt.status = "Face_Checked";
         }
         lt.$key = t.key as string;
         this.listLogtime.push(lt as Logtime);
@@ -137,11 +151,26 @@ export class LogtimeComponent implements OnInit {
       },
     ], false);
   }
-
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
+      this.service.deleteUser(event.data.name);
+      this.reload();
     } else {
+      event.confirm.reject();
+    }
+  }
+  onSaveConfirm(event):void {
+    if (window.confirm('Are you sure you want to delete?'))
+    {
+      event.confirm.resolve();
+      let lt: Logtime = new Logtime()
+      lt.$key = event.newData.$key as string
+      lt.status = event.newData.status as string
+      this.service.updateLogtime(lt);
+      this.reload();
+    }
+    else {
       event.confirm.reject();
     }
   }

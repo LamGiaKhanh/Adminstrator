@@ -21,7 +21,13 @@ export class UserComponent implements OnInit {
   source : any = LocalDataSource;
   settings = {
     add: {
-      confirmCreate: true,
+      confirmCreate: true
+    },
+    edit: {
+      confirmSave: true
+    },
+    delete: {
+      confirmDelete: true
     },
     columns: {
       name: {
@@ -88,17 +94,27 @@ export class UserComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    console.log('123');
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
       this.service.deleteUser(event.data.name);
-      console.log(event.data.name);
+      this.reload();
     } else {
       event.confirm.reject();
     }
   }
+  onSaveConfirm(event):void {
+      event.confirm.resolve();
+      let user: User = new User()
+      user.name = event.newData.name as string
+      user.id = event.newData.id as Number
+      this.service.updateUser(user);
+      console.log(user);
+      this.reload();
+  }
+
 
   onCreateConfirm(event):void {
+    event.confirm.resolve();
     let user: User = new User()
     user.name = event.newData.name as string
     user.id = event.newData.id as Number
