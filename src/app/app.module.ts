@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbCardModule, NbTableModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbMenuShowcaseComponent } from './shared/nb-menu-showcase/nb-menu-showcase.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NbMenuShowcaseComponent } from './shared/nb-menu-showcase/nb-menu-showc
     LogtimeComponent,
     NavbarComponent,
     FooterComponent,
-    NbMenuShowcaseComponent
+    NbMenuShowcaseComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
