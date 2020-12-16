@@ -16,6 +16,9 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbMenuShowcaseComponent } from './shared/nb-menu-showcase/nb-menu-showcase.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Ng2CompleterModule } from 'ng2-completer';
+import { NbIconModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { LoginComponent } from './login/login.component';
     NbEvaIconsModule,
     NbSidebarModule.forRoot(),
     NbCardModule,
-    NbTableModule
+    NbTableModule,
+    Ng2SmartTableModule,
+    Ng2CompleterModule,
+    NbIconModule
 
   ],
   providers: [],

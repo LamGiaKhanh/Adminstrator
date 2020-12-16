@@ -11,7 +11,9 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, children: [
     { path: 'logtimes', component: LogtimeComponent },
-    { path: 'users', component: UserComponent }] },
+    { path: 'users', component: UserComponent },
+    { path: '', component: UserComponent }
+    ]},
   { path: 'login', component: LoginComponent }
 
  
