@@ -11,7 +11,7 @@ import { LogtimeComponent } from './logtime/logtime.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbCardModule, NbTableModule, NbToastrModule, NbSelectModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbCardModule, NbTableModule, NbToastrModule, NbSelectModule ,NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HomeComponent } from './home/home.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -52,7 +52,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     Ng2CompleterModule,
     NbIconModule,
     LazyLoadImageModule,
-    NbSelectModule
+    NbSelectModule,
+    NbButtonModule
 
   ],
   providers: [],

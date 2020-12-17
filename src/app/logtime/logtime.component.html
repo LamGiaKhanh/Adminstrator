@@ -5,7 +5,7 @@
   
     <nb-card-body>
       <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" >
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)">
       </ng2-smart-table>
     </nb-card-body>
   </nb-card>
@@ -17,7 +17,7 @@
   
     <nb-card-body>
       <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-      <ng2-smart-table [settings]="settings2" [source]="pendingSource" (deleteConfirm)="onDeleteConfirm($event)"  (editConfirm)="onSaveConfirm($event)" >
+      <ng2-smart-table [settings]="settings" [source]="pendingSource" (deleteConfirm)="onDeleteConfirm($event)"  (editConfirm)="onSaveConfirm($event)" >
       </ng2-smart-table>
     </nb-card-body>
   </nb-card>

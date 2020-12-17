@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/nebular-icons/scss/nebular-icons.scss"
             ],
             "scripts": []
           },
@@ -93,8 +94,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_module/@nebular/theme/styles/prebuild/default.scss"
-              
+              "./node_module/@nebular/theme/styles/prebuild/default.scss",
+              "node_modules/nebular-icons/scss/nebular-icons.scss"              
             ],
             "scripts": []
           }

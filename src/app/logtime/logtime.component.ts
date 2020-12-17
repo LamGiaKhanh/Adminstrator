@@ -18,43 +18,17 @@ export class LogtimeComponent implements OnInit {
   pendingSource : any = LocalDataSource;
 
   settings = {
-    actions:false,
-    columns: {
-      $key: {
-        title: 'Log time',
-        filter: false
-      },
-      imageURL: {
-        title: 'Image',
-        filter: false,
-        class: 'justify-content-center',
-        type: 'html',
-        valuePrepareFunction: (imageURL) => {
-          return `<img class='table-thumbnail-img' height="150" width="100" [lazyLoad]="imageURL" src="${imageURL}"/>`
-    }
-      },
-      name: {
-        title: 'Name',
-        filter: false
-      },
-      time: {
-        title: 'Time',
-        filter: false
-      },
-      status: {
-        title: 'Status',
-        filter: false
-      },
-    }
-  };
-
-  settings2 = {
+    actions:
+    { add: false},
     edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
       confirmSave: true
     },
-    delete:
-    {
-      confirmDelete: true
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
     },
     columns: {
       $key: {
@@ -157,17 +131,11 @@ export class LogtimeComponent implements OnInit {
     }
   }
   onSaveConfirm(event):void {
-    if (window.confirm('Are you sure you want to edit?'))
-    {
       event.confirm.resolve();
       let lt: Logtime = new Logtime()
       lt.$key = event.newData.$key as string
       lt.status = event.newData.status as string
       this.service.updateLogtime(lt);
       this.reload();
-    }
-    else {
-      event.confirm.reject();
-    }
   }
 }

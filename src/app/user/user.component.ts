@@ -21,13 +21,20 @@ export class UserComponent implements OnInit {
   source : any = LocalDataSource;
   settings = {
     add: {
+      addButtonContent: '<i class="nb-plus"></i>',
+      createButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
       confirmCreate: true
-    },
+      },
     edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
       confirmSave: true
     },
     delete: {
-      confirmDelete: true
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
     },
     columns: {
       name: {
@@ -114,12 +121,12 @@ export class UserComponent implements OnInit {
 
 
   onCreateConfirm(event):void {
-    event.confirm.resolve();
-    let user: User = new User()
-    user.name = event.newData.name as string
-    user.id = event.newData.id as Number
-    this.service.createUser(user);
-    this.reload();
+      event.confirm.resolve();
+      let user: User = new User()
+      user.name = event.newData.name as string
+      user.id = event.newData.id as Number
+      this.service.createUser(user);
+      this.reload();
   } 
 
 }
