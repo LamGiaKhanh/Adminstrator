@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
     columns: {
       name: {
         title: 'Full Name',
-        filter: false
+        filter: true
       },
       id: {
         title: 'Id',
@@ -49,7 +49,9 @@ export class UserComponent implements OnInit {
   };
 
 
-  constructor(private service: RealtimeDatabaseService) { }
+  constructor(private service: RealtimeDatabaseService) { 
+    this.source = new LocalDataSource();
+  }
 
   ngOnInit(): void {
     this.reload();
@@ -91,10 +93,6 @@ export class UserComponent implements OnInit {
       // fields we want to include in the search
       {
         field: 'name',
-        search: query
-      },
-      {
-        field: 'id',
         search: query
       },
     ], false);

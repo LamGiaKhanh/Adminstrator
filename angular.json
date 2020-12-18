@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/nebular-icons/scss/nebular-icons.scss"
+              "node_modules/nebular-icons/scss/nebular-icons.scss",
+              ""
             ],
             "scripts": []
           },

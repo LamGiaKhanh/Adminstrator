@@ -11,6 +11,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 export class LogtimeComponent implements OnInit {
   listLogtime: Logtime[] = [];
   listPending: Logtime[] = [];
+  public pendingCount: number;
 
   hideWhenNoUser: boolean = false;
   noData: boolean = false; 
@@ -42,7 +43,7 @@ export class LogtimeComponent implements OnInit {
         type: 'html',
         valuePrepareFunction: (imageURL) => {
           return `<img class='table-thumbnail-img' height="150" width="100" [lazyLoad]="imageURL" src="${imageURL}"/>`
-    }
+        }
       },
       name: {
         title: 'Name',
@@ -74,7 +75,16 @@ export class LogtimeComponent implements OnInit {
     this.dataState();
     
   }
+
   reload()
+  {
+    this.loadLogtimeSource();
+    this.loadPendingSource();
+    this.source.refresh();
+    this.pendingSource.refresh();
+  }
+
+  loadLogtimeSource()
   {
     this.service.getLogtimes().snapshotChanges().subscribe(res => {
       this.listLogtime.length = 0;
@@ -82,15 +92,35 @@ export class LogtimeComponent implements OnInit {
         let lt: Logtime = new Logtime()
         
         lt = t.payload.toJSON() as Logtime;
-        if (lt.status == null)
+        if (lt.status != "Pending")
         {
-          lt.status = "Pending";
+          lt.status = "Face_Checked";
+          lt.$key = t.key as string;
+          this.listLogtime.push(lt as Logtime);
         }
-        lt.$key = t.key as string;
-        this.listLogtime.push(lt as Logtime);
+        
       });
       this.source = this.listLogtime;
-      this.pendingSource = this.listLogtime.filter(lt => lt.status == "Pending")
+
+    }, err => {
+      debugger;
+    });
+  }
+
+  loadPendingSource()
+  {
+    this.service.getPendingList().snapshotChanges().subscribe(res => {
+      this.listPending.length = 0;
+      res.forEach(t => {
+        let lt: Logtime = new Logtime()
+        
+        lt = t.payload.toJSON() as Logtime;
+        lt.$key = t.key as string;
+        this.listPending.push(lt as Logtime);
+      });
+      this.pendingSource = this.listPending;
+      this.service.PendingCount = this.listPending.length;
+
     }, err => {
       debugger;
     });
@@ -115,10 +145,6 @@ export class LogtimeComponent implements OnInit {
         field: 'name',
         search: query
       },
-      {
-        field: 'id',
-        search: query
-      },
     ], false);
   }
   onDeleteConfirm(event): void {
@@ -137,5 +163,11 @@ export class LogtimeComponent implements OnInit {
       lt.status = event.newData.status as string
       this.service.updateLogtime(lt);
       this.reload();
+  }
+
+  onChangeTab(event):void 
+  {
+    event.confirm.resolve();
+    this.reload();
   }
 }

@@ -1,23 +1,49 @@
-<nb-card>
-    <nb-card-header>
-      Face checked logtimes
-    </nb-card-header>
-  
-    <nb-card-body>
-      <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)">
-      </ng2-smart-table>
-    </nb-card-body>
-  </nb-card>
 
-  <nb-card>
-    <nb-card-header>
-      Pending Logtimes
-    </nb-card-header>
+<nb-card>
+  <nb-card-body>
+    <nb-tabset>
+      <nb-tab tabTitle="Face-checked Logtimes" (changeTab)="onChangeTab($event)">
+        <nb-card>
+          <nb-card-header>
+            Face checked logtimes
+          </nb-card-header>
+          
+          <nb-card-body>
+            <nb-form-field>   
+              <input type="text" nbInput #search class="search"  placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+              <button nbSuffix nbButton ghost>
+                <nb-icon icon="search-outline" pack="eva"></nb-icon>
+              </button>
+            </nb-form-field>
+            <ng2-smart-table class="pt-2" [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)">
+            </ng2-smart-table>
+
+          </nb-card-body>
+        </nb-card>      
+      </nb-tab>
+
+      <nb-tab tabTitle="Pending Logtimes" badgeText={{this.listPending.length}} badgeStatus="danger" (changeTab)="onChangeTab($event)" >
+        <nb-card>
+          <nb-card-header>
+            Pending Logtimes
+          </nb-card-header>
+          
+          <nb-card-body>
+            <nb-form-field>   
+              <input type="text" nbInput #search class="search"  placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+              <button nbSuffix nbButton ghost>
+                <nb-icon icon="search-outline" pack="eva"></nb-icon>
+              </button>
+            </nb-form-field>
+            <ng2-smart-table [settings]="settings" [source]="pendingSource" (deleteConfirm)="onDeleteConfirm($event)"  (editConfirm)="onSaveConfirm($event)" >
+            </ng2-smart-table>
+          </nb-card-body>
+        </nb-card>
+      </nb-tab>
+    </nb-tabset>
+
+  </nb-card-body>
+</nb-card>
+
+
   
-    <nb-card-body>
-      <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-      <ng2-smart-table [settings]="settings" [source]="pendingSource" (deleteConfirm)="onDeleteConfirm($event)"  (editConfirm)="onSaveConfirm($event)" >
-      </ng2-smart-table>
-    </nb-card-body>
-  </nb-card>
