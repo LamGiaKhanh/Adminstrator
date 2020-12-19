@@ -29,9 +29,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/nebular-icons/scss/nebular-icons.scss",
-              ""
-            ],
+              "node_modules/nebular-icons/scss/nebular-icons.scss"
+
+                        ],
             "scripts": []
           },
           "configurations": {
@@ -96,7 +96,7 @@
             "styles": [
               "src/styles.scss",
               "./node_module/@nebular/theme/styles/prebuild/default.scss",
-              "node_modules/nebular-icons/scss/nebular-icons.scss"              
+              "node_modules/nebular-icons/scss/nebular-icons.scss"
             ],
             "scripts": []
           }

@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
     columns: {
       name: {
         title: 'Full Name',
-        filter: true
+        filter: false
       },
       id: {
         title: 'Id',
@@ -108,23 +108,30 @@ export class UserComponent implements OnInit {
     }
   }
   onSaveConfirm(event):void {
-      event.confirm.resolve();
+
       let user: User = new User()
       user.name = event.newData.name as string
       user.id = event.newData.id as Number
       this.service.updateUser(user);
       console.log(user);
       this.reload();
+      event.confirm.resolve(event.newData);
+      this.refresh();
+
   }
 
 
   onCreateConfirm(event):void {
-      event.confirm.resolve();
       let user: User = new User()
       user.name = event.newData.name as string
       user.id = event.newData.id as Number
       this.service.createUser(user);
       this.reload();
+      event.confirm.resolve(event.newData);
+
   } 
+  refresh(): void {
+    window.location.reload();
+  }
 
 }

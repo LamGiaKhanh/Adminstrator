@@ -80,14 +80,14 @@ export class LogtimeComponent implements OnInit {
   {
     this.loadLogtimeSource();
     this.loadPendingSource();
-    this.source.refresh();
-    this.pendingSource.refresh();
   }
 
   loadLogtimeSource()
   {
     this.service.getLogtimes().snapshotChanges().subscribe(res => {
       this.listLogtime.length = 0;
+      this.source = new LocalDataSource();
+
       res.forEach(t => {
         let lt: Logtime = new Logtime()
         
@@ -111,6 +111,7 @@ export class LogtimeComponent implements OnInit {
   {
     this.service.getPendingList().snapshotChanges().subscribe(res => {
       this.listPending.length = 0;
+      this.pendingSource = new LocalDataSource();
       res.forEach(t => {
         let lt: Logtime = new Logtime()
         
@@ -157,12 +158,23 @@ export class LogtimeComponent implements OnInit {
     }
   }
   onSaveConfirm(event):void {
-      event.confirm.resolve();
+    try {
+      event.confirm.resolve(event.newData);
       let lt: Logtime = new Logtime()
       lt.$key = event.newData.$key as string
       lt.status = event.newData.status as string
       this.service.updateLogtime(lt);
-      this.reload();
+      this.refresh();
+
+    }
+    catch (e)
+    {
+      console.log(e);
+    }
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
   onChangeTab(event):void 

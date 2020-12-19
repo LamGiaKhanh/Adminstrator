@@ -22,7 +22,7 @@
         </nb-card>      
       </nb-tab>
 
-      <nb-tab tabTitle="Pending Logtimes" badgeText={{this.listPending.length}} badgeStatus="danger" (changeTab)="onChangeTab($event)" >
+      <nb-tab tabTitle="Pending Logtimes"  [badgeText]="this.listPending?.length || null" badgeStatus="danger" (changeTab)="onChangeTab($event)" >
         <nb-card>
           <nb-card-header>
             Pending Logtimes
