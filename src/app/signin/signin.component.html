@@ -1,1 +1,17 @@
-<button NbButton (click)="authService.GoogleAuth()"></button>
+<nb-layout>
+	<nb-layout-column></nb-layout-column>
+
+	<nb-layout-column >
+		<nb-card  size="medium">
+			<nb-card-header>
+				<h2 status="success" >Login</h2>
+				<p>We only accept for Adminstrator's Google Account</p>
+			</nb-card-header>
+			<nb-card-body center>
+				<button nbButton hero status="primary" (click)="authService.GoogleAuth()">Login with Google account</button>
+			</nb-card-body>
+		</nb-card>
+	</nb-layout-column>
+
+	<nb-layout-column></nb-layout-column>
+</nb-layout>
