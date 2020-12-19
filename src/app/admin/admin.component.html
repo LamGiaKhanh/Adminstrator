@@ -1,0 +1,21 @@
+<nb-card>
+    <nb-card-header>
+      Admin <i class="fal fa-plus-circle"></i>
+    </nb-card-header>
+  
+    <nb-card-body>
+      <nb-form-field>   
+        <input type="text" nbInput #search class="search"  placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+        <button nbSuffix nbButton ghost>
+          <nb-icon icon="search-outline" pack="eva"></nb-icon>
+        </button>
+      </nb-form-field>
+
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (createConfirm)="onCreateConfirm($event)" (editConfirm)="onSaveConfirm($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+  
+
+
+

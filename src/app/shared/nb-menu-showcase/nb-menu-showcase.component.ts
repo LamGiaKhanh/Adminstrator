@@ -21,10 +21,18 @@ export class NbMenuShowcaseComponent implements OnInit {
       icon: 'lock-outline',
       link:'/logtimes'
     },
+    {
+      title: 'Admins',
+      icon: 'lock-outline',
+      link:'/admins'
+    },
 
   ];
-  constructor() {
-      
+  constructor(private service: RealtimeDatabaseService) {
+    if (this.service.userData)
+    {
+      console.log(this.service.userData.gmail);
+    }
    }
 
   ngOnInit(): void {

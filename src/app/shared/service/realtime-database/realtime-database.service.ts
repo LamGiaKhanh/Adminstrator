@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { User} from '../../model/User';
 import { Logtime } from '../../model/Logtime';
+import { Admin } from '../../model/Admin';
 
 
 @Injectable({
@@ -12,10 +13,13 @@ export class RealtimeDatabaseService {
   usersRef: AngularFireList<User>;
   logsRef: AngularFireList<Logtime>;
   pendingRef : AngularFireList<Logtime>;
+  adminsRef :AngularFireList<Admin>;
+  public userData: any;
 
   public PendingCount: number = 0;
   private userPath = '/Users';
   private logPath = '/LogTimes';
+  private adminPath = '/Admin';
 
   constructor( private realtimeDb: AngularFireDatabase) { }
 
@@ -23,6 +27,7 @@ export class RealtimeDatabaseService {
     this.usersRef = this.realtimeDb.list(this.userPath) as AngularFireList<User>;
     return this.usersRef;
   }
+  
   getUsersById(id): AngularFireList<User> {
     this.usersRef = this.realtimeDb.list(this.userPath + "/" + id) as AngularFireList<User>;
     return this.usersRef;
@@ -65,6 +70,26 @@ export class RealtimeDatabaseService {
   deleteLogtime(key): Promise<void> {
     return this.realtimeDb.object(this.logPath + "/" + key).remove();
   }
+
+  createAdmin(ad: Admin) :any
+  {
+    return this.realtimeDb.object(this.adminPath + '/' + ad.name).update({gmail: ad.gmail, permission: ad.permission});
+  }
+
+  getAdmin(): AngularFireList<Admin> {
+    this.adminsRef = this.realtimeDb.list(this.adminPath) as AngularFireList<Admin>;
+    return this.adminsRef;
+  }
+
+  updateAdmin(ad: Admin): Promise<void> {
+    return this.realtimeDb.object(this.adminPath + "/" + ad.name).update({gmail: ad.gmail, permission: ad.permission});
+  }
+
+  deleteAdmin(key): Promise<void> {
+    return this.realtimeDb.object(this.adminPath + "/" + key).remove();
+  }
+
+
 
 
 }

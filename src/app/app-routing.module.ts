@@ -4,29 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from '../app/user/user.component';
 import { LogtimeComponent } from './logtime/logtime.component';
 import { HomeComponent } from './home/home.component';
-import {
-  NbAuthComponent,
-  NbLoginComponent,
-} from '@nebular/auth';
 import { User } from './shared/model/User';
 import {SigninComponent} from "./signin/signin.component"
 import { AuthGuardService, SecureInnerPagesGuard } from "./shared/service/authGuard/auth-guard.service";
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
-  { path: 'auth',
-    component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      }
-    ]
-  },
   { path: '', component: HomeComponent, children: [
 
     { path: 'logtimes', 
@@ -38,9 +22,9 @@ const routes: Routes = [
       component: UserComponent,
       canActivate: [AuthGuardService]
     },
-
-    { path: '', 
-      component: UserComponent 
+    { path: 'admins', 
+      component: AdminComponent,
+      canActivate: [AuthGuardService]
     }
 
     ]},

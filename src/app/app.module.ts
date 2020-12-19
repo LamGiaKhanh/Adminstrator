@@ -20,6 +20,7 @@ import { NbIconModule } from '@nebular/theme';
 import { NbMenuShowcaseComponent } from './shared/nb-menu-showcase/nb-menu-showcase.component'
 import { SigninComponent } from './signin/signin.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FooterComponent,
     NbMenuShowcaseComponent,
     HomeComponent,
-    SigninComponent
+    SigninComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
