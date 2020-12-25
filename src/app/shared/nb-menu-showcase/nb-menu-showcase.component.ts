@@ -39,8 +39,8 @@ export class NbMenuShowcaseComponent implements OnInit {
   } 
 
   checkPermission(){
-    const user = JSON.parse(localStorage.getItem('user')) as  firebase.auth.UserCredential;
-    console.log(user.user.email);
+    const user = JSON.parse(localStorage.getItem('user')) as firebase.User;
+    console.log(user)
   }
   
 
