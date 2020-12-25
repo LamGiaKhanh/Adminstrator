@@ -90,12 +90,12 @@ export class LogtimeComponent implements OnInit {
 
       res.forEach(t => {
         let lt: Logtime = new Logtime()
-        
-        lt = t.payload.toJSON() as Logtime;
         lt.$key = t.key as string;
-        this.listLogtime.push(lt as Logtime);
-        
-        
+        lt = t.payload.toJSON() as Logtime;
+        if (lt.status == "Face_Checked") {
+          this.listLogtime.push(lt as Logtime);
+        }
+
       });
       this.source = this.listLogtime;
 
