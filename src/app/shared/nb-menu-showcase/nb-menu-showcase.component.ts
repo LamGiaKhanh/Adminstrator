@@ -4,6 +4,8 @@ import { AuthService } from "../service/authService/auth.service";
 import { RealtimeDatabaseService } from '../service/realtime-database/realtime-database.service';
 import { LogtimeComponent } from '../../logtime/logtime.component'
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import firebase from 'firebase/app';
+
 @Component({
   selector: 'app-nb-menu-showcase',
   templateUrl: './nb-menu-showcase.component.html',
@@ -18,7 +20,7 @@ export class NbMenuShowcaseComponent implements OnInit {
     },
     {
       title: 'Log times',
-      icon: 'lock-outline',
+      icon: 'folder-outline',
       link:'/logtimes'
     },
     {
@@ -29,13 +31,16 @@ export class NbMenuShowcaseComponent implements OnInit {
 
   ];
   constructor(private service: RealtimeDatabaseService) {
-    if (this.service.userData)
-    {
-      console.log(this.service.userData.gmail);
-    }
+
    }
 
   ngOnInit(): void {
+    this.checkPermission();
+  } 
+
+  checkPermission(){
+    const user = JSON.parse(localStorage.getItem('user')) as  firebase.auth.UserCredential;
+    console.log(user.user.email);
   }
   
 

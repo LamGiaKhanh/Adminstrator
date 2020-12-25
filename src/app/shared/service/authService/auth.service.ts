@@ -70,22 +70,19 @@ export class AuthService {
   // ifExist(gmail:string): any {
     
   //   this.service.getAdmin().snapshotChanges().subscribe(res => {
-  //     this.listAdmins.length = 0;
-  //     this.source = new LocalDataSource();
-
   //     res.forEach(t => {
 
   //       let ad: Admin = new Admin()
         
   //       ad = t.payload.toJSON() as Admin;
   //       ad.name = t.key as string;
+  //       console.log(ad.gmail);
   //       if (ad.gmail == gmail)
   //       {
-  //         this.listAdmins.push(ad);
+  //         console.log('222');
+  //         localStorage.setItem('verified', "true");
   //       }
   //     });
-  //     this.source = this.listAdmins;
-  //     console.log(this.source.count);
 
 
   //   }, err => {

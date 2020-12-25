@@ -9,12 +9,6 @@
           </nb-card-header>
           
           <nb-card-body>
-            <nb-form-field>   
-              <input type="text" nbInput #search class="search"  placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-              <button nbSuffix nbButton ghost>
-                <nb-icon icon="search-outline" pack="eva"></nb-icon>
-              </button>
-            </nb-form-field>
             <ng2-smart-table class="pt-2" [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)">
             </ng2-smart-table>
 
@@ -29,12 +23,6 @@
           </nb-card-header>
           
           <nb-card-body>
-            <nb-form-field>   
-              <input type="text" nbInput #search class="search"  placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-              <button nbSuffix nbButton ghost>
-                <nb-icon icon="search-outline" pack="eva"></nb-icon>
-              </button>
-            </nb-form-field>
             <ng2-smart-table [settings]="settings" [source]="pendingSource" (deleteConfirm)="onDeleteConfirm($event)"  (editConfirm)="onSaveConfirm($event)" >
             </ng2-smart-table>
           </nb-card-body>

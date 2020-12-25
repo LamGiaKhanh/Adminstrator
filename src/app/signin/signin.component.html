@@ -4,11 +4,13 @@
 	<nb-layout-column >
 		<nb-card  size="medium">
 			<nb-card-header>
-				<h2 status="success" >Login</h2>
-				<p>We only accept for Adminstrator's Google Account</p>
+				<h2	 status="success" >Log in</h2>
+				<span>for Management System</span>
+				
 			</nb-card-header>
 			<nb-card-body center>
-				<button nbButton hero status="primary" (click)="authService.GoogleAuth()">Login with Google account</button>
+				<p>We only accept for Adminstrator's Google Account</p>
+				<button nbButton  hero status="primary" (click)="authService.GoogleAuth()"><nb-icon icon="google-outline"></nb-icon>Login with Google account</button>
 			</nb-card-body>
 		</nb-card>
 	</nb-layout-column>
