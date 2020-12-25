@@ -92,12 +92,9 @@ export class LogtimeComponent implements OnInit {
         let lt: Logtime = new Logtime()
         
         lt = t.payload.toJSON() as Logtime;
-        if (lt.status != "Pending")
-        {
-          lt.status = "Face_Checked";
-          lt.$key = t.key as string;
-          this.listLogtime.push(lt as Logtime);
-        }
+        lt.$key = t.key as string;
+        this.listLogtime.push(lt as Logtime);
+        
         
       });
       this.source = this.listLogtime;
@@ -114,10 +111,10 @@ export class LogtimeComponent implements OnInit {
       this.pendingSource = new LocalDataSource();
       res.forEach(t => {
         let lt: Logtime = new Logtime()
-        
-        lt = t.payload.toJSON() as Logtime;
         lt.$key = t.key as string;
         this.listPending.push(lt as Logtime);
+        
+        
       });
       this.pendingSource = this.listPending;
       this.service.PendingCount = this.listPending.length;
