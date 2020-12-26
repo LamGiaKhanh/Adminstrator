@@ -19,7 +19,10 @@ export class RealtimeDatabaseService {
   public PendingCount: number = 0;
   private userPath = '/Users';
   private logPath = '/LogTimes';
+  private vectorPath = '/All vectors';
+  private kmvectorPath = '/K-mean Vectors';
   private adminPath = '/Admin';
+
 
   constructor( private realtimeDb: AngularFireDatabase) { }
 
@@ -44,6 +47,18 @@ export class RealtimeDatabaseService {
 
   deleteUser(key: string): Promise<void> {
     return this.realtimeDb.object(this.userPath + "/" + key).remove();
+  }
+
+  deleteVector(key: string): Promise<void> {
+    console.log(key);
+    return this.realtimeDb.object(this.vectorPath + "/" + key).remove();
+  }
+
+  deleteKmVector(key: string): Promise<void> {
+    for (let i = 0; i < 2 ; i++)
+    {
+      return this.realtimeDb.object(this.kmvectorPath + "/" + key).remove();
+    }
   }
 
   

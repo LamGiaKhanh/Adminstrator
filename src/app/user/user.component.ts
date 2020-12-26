@@ -20,12 +20,9 @@ export class UserComponent implements OnInit {
   noData: boolean = false;
   source : any = LocalDataSource;
   settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      confirmCreate: true
-      },
+    actions:
+    { add: false
+    },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
@@ -102,6 +99,12 @@ export class UserComponent implements OnInit {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
       this.service.deleteUser(event.data.name);
+      this.service.deleteVector(event.data.name);
+      for ( let i = 0; i <= 2 ; i++)
+      {
+        this.service.deleteKmVector(event.data.name + ' - ' + i);
+        console.log(event.data.name + ' - ' + i);
+      }
       this.reload();
     } else {
       event.confirm.reject();

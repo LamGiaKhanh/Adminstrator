@@ -2,26 +2,22 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
+<div>
 <div class="header-container">
+
     <div>
-            <b> {{admin.gmail}}</b> <b> - </b> <b>{{admin.permission}}</b>
-            <button type="button" class="w3-button w3-left w3-light-grey" (click)="authService.SignOut()">
-                Logout
-            </button> 
-            <div>
-
-            </div>
+        <div>
+            <b>{{user.displayName}} - {{admin.gmail}} - {{admin.permission}}</b> 
+        </div>
 
 
-</div>
-
-</div>
-
-<div class="header-container">
-    <div class="logo-container">
-        <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-            <nb-icon icon="menu-2-outline"></nb-icon>
-        </a>
     </div>
+
 </div>
+</div>
+<button type="button" class="w3-button w3-left w3-light-grey" (click)="authService.SignOut()">
+    Logout
+</button> 
+
+
    

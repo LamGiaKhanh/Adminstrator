@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  NbMenuItem } from '@nebular/theme';
+import {  NbMenuItem, NbSidebarService } from '@nebular/theme';
 import { AuthService } from "../service/authService/auth.service";
 import { RealtimeDatabaseService } from '../service/realtime-database/realtime-database.service';
 import { LogtimeComponent } from '../../logtime/logtime.component'
@@ -24,10 +24,15 @@ export class NbMenuShowcaseComponent implements OnInit {
     },
 
   ];
-  constructor(private service: RealtimeDatabaseService, public authService: AuthService,) {
+  constructor(private service: RealtimeDatabaseService, public authService: AuthService,  private sidebarService: NbSidebarService) {
 
    }
 
+  toggleSidebar(): boolean {
+    this.sidebarService.toggle(true, 'menu-sidebar');
+
+    return false;
+  }
   ngOnInit(): void {
     if(this.authService.isSuperAdmin) {
       this.items.push({
