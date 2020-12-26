@@ -6,7 +6,7 @@ import { LogtimeComponent } from './logtime/logtime.component';
 import { HomeComponent } from './home/home.component';
 import { User } from './shared/model/User';
 import {SigninComponent} from "./signin/signin.component"
-import { AuthGuardService, SecureInnerPagesGuard } from "./shared/service/authGuard/auth-guard.service";
+import { AuthGuardService, SecureInnerPagesGuard, SecureAdminsPage } from "./shared/service/authGuard/auth-guard.service";
 import { AdminComponent } from './admin/admin.component';
 
 
@@ -24,7 +24,7 @@ const routes: Routes = [
     },
     { path: 'admins', 
       component: AdminComponent,
-      canActivate: [AuthGuardService]
+      canActivate: [SecureAdminsPage]
     }
 
     ]},

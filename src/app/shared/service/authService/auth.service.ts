@@ -19,6 +19,7 @@ export class AuthService  {
 
   source: any = LocalDataSource;
 
+
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
@@ -65,7 +66,8 @@ export class AuthService  {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
       if (this.isValid(result.user.email)) {
-        localStorage.setItem('user', JSON.stringify(this.userData));  
+        localStorage.setItem('user', JSON.stringify(this.userData))
+        
         setTimeout(() => {
           this.router.navigate(['/users']);
         }, 10);
@@ -82,7 +84,8 @@ export class AuthService  {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['signin']);
+      localStorage.removeItem('admin');
+      this.router.navigate(['/signin']);
     })
   }
 
@@ -90,8 +93,17 @@ export class AuthService  {
   isValid(mail: string): boolean {
     for (let i = 0; i < this.adminList.length; i++) {
       if (this.adminList[i].gmail == mail) {
+        localStorage.setItem('admin', JSON.stringify(this.adminList[i]))
         return true
       }
+    }
+    return false
+  }
+
+  get isSuperAdmin(): boolean {
+    let admin = JSON.parse(localStorage.getItem('admin')) as Admin
+    if (admin.permission == "superAdmin") {
+      return true
     }
     return false
   }

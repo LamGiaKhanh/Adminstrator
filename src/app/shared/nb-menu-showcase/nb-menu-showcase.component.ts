@@ -4,7 +4,6 @@ import { AuthService } from "../service/authService/auth.service";
 import { RealtimeDatabaseService } from '../service/realtime-database/realtime-database.service';
 import { LogtimeComponent } from '../../logtime/logtime.component'
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-nb-menu-showcase',
@@ -23,25 +22,23 @@ export class NbMenuShowcaseComponent implements OnInit {
       icon: 'folder-outline',
       link:'/logtimes'
     },
-    {
-      title: 'Admins',
-      icon: 'lock-outline',
-      link:'/admins'
-    },
 
   ];
-  constructor(private service: RealtimeDatabaseService) {
+  constructor(private service: RealtimeDatabaseService, public authService: AuthService,) {
 
    }
 
   ngOnInit(): void {
-    this.checkPermission();
+    if(this.authService.isSuperAdmin) {
+      this.items.push({
+        title: 'Admins',
+        icon: 'lock-outline',
+        link:'/admins'
+      },)
+    }
   } 
 
-  checkPermission(){
-    const user = JSON.parse(localStorage.getItem('user')) as firebase.User;
-    console.log(user)
-  }
+
   
 
 }
